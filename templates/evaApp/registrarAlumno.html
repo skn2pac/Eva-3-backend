@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- usado el style para dar el toque de desenfoque a la imagen de fondo en registrar alumnos-->
+
+<style>
+  .mask-custom {
+    backdrop-filter: blur(3px);
+    background-color: rgba(224,219,255,0.35);
+  }
+</style>
+<!-- usado el style para dar el toque de desenfoque a la imagen de fondo en registrar alumnos-->
+
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
+rel="stylesheet"
+/>
+<!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>Inicio</title>
+
+</head>
+
+<body>
+  <header>
+    <!-- Nav bar-->
+   <nav class="navbar navbar-expand-lg bg-dark me-auto">
+     <div class="container-fluid">
+       <img src="{%static "images/pacani.png"%}" alt="" width="180" height="50">
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav ms-auto">
+           <li>
+             <a class="nav-link active" aria-current="page" href="{% url 'registrar'%}" style="color:white">Matricular Alumno</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link active" aria-current="page" href="{% url 'index'%}" style="color:white">Inicio</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link active" href="{% url 'alumnos'%}" style="color:white">Alumnos</a>
+           </li>
+         </ul>
+       </div>
+     </div>
+   </nav>
+
+ </header>
+
+<!-- Background image -->
+<div
+  class="bg-image container mt-5 "
+  style="
+    background-image: url('{%static "images/biblio.jpg"%}');
+    height: 60vh;
+  "
+>
+  <div class="mask mask-custom" style="background-color: rgba(0, 0, 0, 0.6);">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <h1 class="text-white mb-0">Registrar Nuevos Alumnos</h1>
+    </div>
+  </div>
+</div>
+<!-- Background image -->
+
+
+<form method="POST" class="container mt-5">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <div class="d-flex justify-content-center align-items-center p-5">
+      <input type="submit" class="btn btn-info" value="REGISTRAR">
+    </div>
+
+</form>
+</body>
+</html>
