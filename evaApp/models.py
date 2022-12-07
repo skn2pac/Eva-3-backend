@@ -60,8 +60,8 @@ class Seccion(models.Model):
         ordering=['cod_seccion']
 
 
-    # def __str__(self):
-    #     return self.cod_seccion
+    def __str__(self):
+        return self.cod_seccion
 
 
 class Sala(models.Model):

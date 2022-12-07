@@ -142,10 +142,8 @@ rel="stylesheet"
           {%for alumn in secc.alumnos_asignados.all%}
             <tr>
                 <td scope="row">{{ secc.cod_seccion }}</td>
-                <td>{{ secc.alumno_id }}</td>
+                <td>{{ alumn }}</td>
                 <td>{{secc.docente_cargo}}</td>
-                <!-- return confirm('La consulta') utilizado con un onclick es para esperar confirmación de la accion a llevar a cabo por el usuario.
-                    se pueden usar los campos alu. para mostrar los datos en el dialogo-->
             </tr>
             {% endfor %}
         </tbody>

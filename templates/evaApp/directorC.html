@@ -128,8 +128,8 @@ rel="stylesheet"
 <!-- Background image -->
 
     
-    {%if director%}
-
+    {%if directorC%}
+    {%for d in directorC%}
     <table class="table container mt-5 table-striped">
         <thead>
             <tr>
@@ -141,17 +141,18 @@ rel="stylesheet"
             </tr>
         </thead>
         <tbody>
-            {%for d in director%}
+            {%for secc in d.seccion_cargo.all%}
             <tr>
                 <td scope="row">{{ d.id }}</td>
                 <td>{{d.nombre}}</td>
                 <td>{{d.apellido}}</td>
                 <td>{{d.rut}}</td>
-                <td>{{d.seccion_cargo}}</td>
+                <td>{{secc}}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% endfor %}
     {%else%}
 
         <div class="alert alert-info container mt-5">No hay Directores de Carrera</div>

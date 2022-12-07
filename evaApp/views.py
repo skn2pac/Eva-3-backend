@@ -37,6 +37,7 @@ def actualizarAlumno(request,id):
         form = alumnoRegistro(request.POST, instance=alumno)
         if form.is_valid():
             form.save()
+            return redirect('/alumnos/')
     data = {'form':form}
     return render(request,'evaApp/registrarAlumno.html',data)
 
@@ -54,6 +55,7 @@ def listadoDocente(request):
 def agregarDocente(request):
     form = FormDocente()
     if request.method == 'POST':
+        form = FormDocente(request.POST)
         if form.is_valid():
             form.save()
     data = {'form': form}
@@ -72,8 +74,9 @@ def actualizarDocente(request, id):
         form = FormDocente(request.POST, instance = docente)
         if form.is_valid():
             form.save()
+            return redirect('/listaDocente/')
     data = {'form': form}
-    return render(request, 'evaApp/docente.html', data)
+    return render(request, 'evaApp/registrarDocente.html', data)
 
 def sala(request):
     sal = Sala.objects.all()
