@@ -30,13 +30,13 @@
       }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Inicio</title>
+    <title>Lista Docente</title>
     
 </head>
- 
 
-<body>
-  <!-- Nav bar-->
+
+<body class="body-home">
+<!-- Nav bar-->
 <header>
   <nav class="navbar navbar-expand-lg bg-dark me-auto">
     <div class="container-fluid">
@@ -108,27 +108,64 @@
   </nav>
 
 </header>
-
-    
-
-<!-- https://portales.inacap.cl/Assets/admision/admision-2023/admision-header.jpg -->
-
-  <div class="d-flex justify-content-center align-items-center" style="background-image: url(/static/images/admision.jpg/); height: 50vh;">
-    <div class="" style="">
-      <div class="d-flex justify-content-center align-items-center ">
-        <h1 class="display-1" style="color:white; bold"><b>Admisión</b></h1>
-      </div>
+<!-- Background image -->
+<div
+  class="bg-image container mt-5 "
+  style="
+    background-image: url('{%static "images/lista.jpg"%}');
+    height: 60vh;
+  "
+>
+  <div class="mask mask-custom" style="background-color: rgba(0, 0, 0, 0.6);">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <h1 class="text-white mb-0">Lista de Docentes</h1>
     </div>
   </div>
+</div>
+<!-- Background image -->
 
-  <div class="container p-5">
-    <h1 style="text-align: center;">Proceso de matriculas abierto</h1>
-  </div>
+    <main class="home-main">
+        <!-- TABLA -->
+        <section class="main-tabla container mt-5">
+            {%if docentes %}
+            <table class="table container mt-5 table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fono</th>
+                    <th>Nivel Academico</th>
+                    <th>Años de Experiencia</th>
+                    <th>Especialidad</th>
+                    <th>-</th>
+                    <th>-</th>
+                  </tr>
+                </thead>
 
-  <div class="container p-3 d-flex justify-content-center align-items-center">
-    <a type="submit" class="btn btn-danger" href="{% url 'registrar'%}">Matricular Ahora</a>
-  </div>
-
+                <tbody>
+                  {% for docente in docentes %}
+                  <tr>
+                    <td scope='row' >{{ docente.id }}</td>
+                    <td>{{ docente.nombre }}</td>
+                    <td>{{ docente.apellido }}</td>
+                    <td>{{ docente.fono }}</td>
+                    <td>{{ docente.nivelAcademico }}</td>
+                    <td>{{ docente.anos_exp }}</td>
+                    <td>{{ docente.especialidad }}</td>
+                    <td><a href="/actualizarDocente/{{docente.id}}" class='btn' ><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="/eliminarDocente/{{docente.id}}" class='btn' onclick="return confirm('¿Estas seguro de eliminar al Docente {{docente.nombre}} {{docente.apellido}} con ID {{docente.id}}?')" ><i class="fa-solid fa-trash"></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div role="alert" >
+              <strong>NO SE ENCONTRO NINGUN DOCENTE</strong>
+            </div>
+            {% endif %}
+        </section>
+    </main>
 </body>
-
+<script src='{%static "js/index.js" %}'></script>
 </html>

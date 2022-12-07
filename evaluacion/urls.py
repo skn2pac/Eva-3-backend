@@ -15,11 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from evaApp.views import renderIndex
-from evaApp.views import alumnoData
-from evaApp.views import alumnoRegistrationView
-from evaApp.views import eliminarAlumno
-from evaApp.views import actualizarAlumno
+from evaApp.views import renderIndex, alumnoData,alumnoRegistrationView,eliminarAlumno,actualizarAlumno,agregarDocente,eliminarDocente,listadoDocente,sala, seccion, directorC
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +23,11 @@ urlpatterns = [
     path('alumnos/', alumnoData, name='alumnos'),
     path('registrar/', alumnoRegistrationView, name='registrar'),
     path('eliminarAlumno/<int:id>',eliminarAlumno),
-    path('actualizarAlumno/<int:id>',actualizarAlumno)
+    path('actualizarAlumno/<int:id>',actualizarAlumno),
+    path('registrarDocente/', agregarDocente, name='docentes'),
+    path('listaDocente/', listadoDocente, name='listaDocente'),
+    path('eliminarDocente/<int:id>',eliminarDocente),
+    path('salas/',sala, name='sala'),
+    path('seccion/',seccion, name='seccion'),
+    path('directorC/',directorC,name='directorC')
 ]

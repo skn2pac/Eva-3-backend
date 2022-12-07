@@ -81,7 +81,7 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DJANGO_EVA',
+        'NAME': 'DJANGO_PRUEBA',
         'USER': 'root',
         'PASSWORD':''
     }
@@ -130,3 +130,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DATE_INPUT_FORMATS = ['%Y-%m-%d']
