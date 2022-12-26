@@ -1,0 +1,39 @@
+class AlumnoL(APIView):
+
+    def get(self,request):
+        alumno = Alumno.objects.all()
+        ser = AlumnoSerializer(alumno, many=True)
+        return Response(ser.data)
+    
+    def post(self, request):
+        ser = AlumnoSerializer(data=request.data)
+        if ser.is_valid():
+            ser.save()
+            return Response(ser.data,status=status.HTTP_201_CREATED)
+        return Response(ser.errors,status=status.HTTP_400_BAD_REQUEST)
+
+class AlumnoD(APIView):
+
+    def get_object(self,pk):
+        try:
+            return Alumno.objects.get(pk=pk)
+        except Alumno.DoesNotExist:
+            return Http404
+
+    def get(self,request,pk):
+        alumno = self.get_object(pk)
+        ser = AlumnoSerializer(alumno)
+        return Response(ser.data)
+    
+    def put(self,request,pk):
+        alumno = self.get_object(pk)
+        ser = AlumnoSerializer(alumno,data=request.data)
+        if ser.is_valid():
+            ser.save()
+            return Response(ser.data)
+        return Response(ser.errors,status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self,request,pk):
+        alumno = self.get_object(pk)
+        alumno.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

@@ -14,21 +14,36 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from evaApp.views import renderIndex, alumnoData,alumnoRegistrationView,eliminarAlumno,actualizarAlumno,agregarDocente,eliminarDocente,listadoDocente,sala, seccion, directorC,actualizarDocente
+from apiapp import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('alumnos', views.AlumnoVS)
+router.register('docentes',views.DocenteVS)
+router.register('salas',views.SalaVS)
+router.register('secciones',views.SeccionVS)
+router.register('directorc', views.DirectorCVS)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', renderIndex, name='index'),
-    path('alumnos/', alumnoData, name='alumnos'),
-    path('registrar/', alumnoRegistrationView, name='registrar'),
-    path('eliminarAlumno/<int:id>',eliminarAlumno),
-    path('actualizarAlumno/<int:id>',actualizarAlumno),
-    path('registrarDocente/', agregarDocente, name='docentes'),
-    path('listaDocente/', listadoDocente, name='listaDocente'),
-    path('eliminarDocente/<int:id>',eliminarDocente),
-    path('actualizarDocente/<int:id>',actualizarDocente),
-    path('salas/',sala, name='sala'),
-    path('seccion/',seccion, name='seccion'),
-    path('directorC/',directorC,name='directorC')
+    # path('index/', renderIndex, name='index'),
+    # path('alumnos/', alumnoData, name='alumnos'),
+    # path('registrar/', alumnoRegistrationView, name='registrar'),
+    # path('eliminarAlumno/<int:id>',eliminarAlumno),
+    # path('actualizarAlumno/<int:id>',actualizarAlumno),
+    # path('registrarDocente/', agregarDocente, name='docentes'),
+    # path('listaDocente/', listadoDocente, name='listaDocente'),
+    # path('eliminarDocente/<int:id>',eliminarDocente),
+    # path('actualizarDocente/<int:id>',actualizarDocente),
+    # path('salas/',sala, name='sala'),
+    # path('seccion/',seccion, name='seccion'),
+    # path('directorC/',directorC,name='directorC'),
+    # ###############################################
+    # path('alumnoapi/', views.AlumnoL.as_view()),
+    # path('alumnoapi/<int:pk>', views.AlumnoD.as_view()),
+
+    path('', include(router.urls))
+    
 ]

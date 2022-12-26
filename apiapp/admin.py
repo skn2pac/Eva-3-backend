@@ -1,13 +1,13 @@
-""" from django.contrib import admin
-from evaApp.models import Alumno, Docente, Sala, Seccion, DirectorC
+from django.contrib import admin
+from apiapp.models import Alumno, Docente, Sala, Seccion, DirectorC
 
 # Register your models here.
 
 class alumnoAdmin(admin.ModelAdmin):
-  list_display = ['nombre','apellido','email','fono','direccion','ex_liceo','carrera']
+  list_display = ['nombre_apellido','jornada','email','fono','direccion','ex_liceo','carrera']
 
 class DocenteAdmin(admin.ModelAdmin):
-  list_display = ['nombre', 'apellido', 'fono', 'nivelAcademico', 'anos_exp', 'especialidad']
+  list_display = ['nombre_apellido', 'direccion', 'fono', 'nivelAcademico', 'anios_exp', 'especialidad']
 
 
 class SalaAdmin(admin.ModelAdmin):
@@ -23,4 +23,4 @@ admin.site.register(DirectorC)#,directorCAdmin)
 admin.site.register(Alumno, alumnoAdmin)
 admin.site.register(Docente, DocenteAdmin)
 admin.site.register(Sala, SalaAdmin)
-admin.site.register(Seccion)#, SeccionAdmin) """
+admin.site.register(Seccion)#, SeccionAdmin)
